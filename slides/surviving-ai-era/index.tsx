@@ -1192,6 +1192,8 @@ const P29: Page = () => (
   </Visual>
 );
 
+export const summary = 'AIに任せる量を増やすために変えた3つのことをまとめたスライド。';
+
 export const meta: SlideMeta = { title: 'AI時代を生き抜くためにぼくらが変えたこと', theme: 'standard' };
 export default [
   P01, P02, P03, P04, P05, P06, P07, P08, P09, P10,

@@ -13,6 +13,8 @@ pnpm dev
 
 Agentに「`standard`テーマを指定して、新しいデッキを作って」と依頼します。テーマの定義は[themes/standard.md](themes/standard.md)です。
 
+`index.tsx` に `export const summary = '概要の1文';` を書き、Chromeと`cwebp`がある手元で `pnpm covers <id>` を実行します。1枚目を変えたら撮り直します。
+
 素材の決まりは[AGENTS.md](AGENTS.md)にあります。画像は非可逆WebP、動画は圧縮したH.264のMP4だけを置きます。CIの`pnpm check:assets`がそれ以外を止めます。
 
 公開時と同じURLで確かめるには、次を実行します。

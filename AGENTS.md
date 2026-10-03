@@ -6,6 +6,11 @@ You are authoring **slides** in this repo. Every slide is arbitrary React code t
 
 - Put your slide under `slides/<kebab-case-id>/`.
 - The entry is `slides/<id>/index.tsx`.
+- 一覧に出す概要を `index.tsx` の `export const summary = '概要の1文';` に書く。
+  - 書式: `summary` は上の形で独立した行に書く。`summary` と `meta.title` は単一行の引用符付き文字列リテラルにする。エスケープ・テンプレートリテラル・式は使わない。
+- 新しいデッキを作ったら `pnpm covers <id>` で `slides/<id>/cover.webp` を生成し、デッキと一緒にコミットする。
+  - 条件: 1枚目を変えたら撮り直す。
+  - 必要: 手元のChromeと`cwebp`。Chromeの場所は `CHROME_PATH` でも指定できる。
 - Put slide-specific images/videos/fonts under `slides/<id>/assets/`. For assets reused across decks or themes (logos, avatars), use the global `assets/` folder and import via `@assets/...`.
 - Do **not** touch `package.json`, `open-slide.config.ts`, or other slides.
 - Do not add dependencies. Use only `react` and standard web APIs.

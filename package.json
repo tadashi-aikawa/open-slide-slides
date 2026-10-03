@@ -12,6 +12,7 @@
     "preview:pages": "OPEN_SLIDE_BASE=/open-slide-slides/ node scripts/preview-pages.mjs",
     "typecheck": "tsc --noEmit",
     "check:assets": "node scripts/check-assets.mjs",
+    "covers": "node scripts/covers.mjs",
     "sync:skills": "open-slide sync:skills"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "@types/node": "^24.0.0",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.5",
+    "playwright-core": "1.63.0",
     "typescript": "~5.9.3"
   }
 }
