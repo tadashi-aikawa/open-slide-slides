@@ -1,0 +1,28 @@
+{
+  "name": "open-slide-slides",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "open-slide dev",
+    "build": "open-slide build",
+    "build:pages": "OPEN_SLIDE_BASE=/open-slide-slides/ OPEN_SLIDE_PLAYER_ONLY=1 sh -c 'open-slide build && node scripts/pages.mjs'",
+    "preview": "open-slide preview",
+    "preview:pages": "OPEN_SLIDE_BASE=/open-slide-slides/ node scripts/preview-pages.mjs",
+    "typecheck": "tsc --noEmit",
+    "check:assets": "node scripts/check-assets.mjs",
+    "sync:skills": "open-slide sync:skills"
+  },
+  "dependencies": {
+    "@open-slide/core": "~2.0.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "typescript": "~5.9.3"
+  }
+}
