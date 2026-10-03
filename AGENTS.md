@@ -21,7 +21,6 @@ You are authoring **slides** in this repo. Every slide is arbitrary React code t
   - 画像: `cwebp -q 85 -m 6 -sharp_yuv input.png -o output.webp`
   - 動画: `ffmpeg -i input.mp4 -an -c:v libx264 -preset veryslow -crf 22 -pix_fmt yuv420p -movflags +faststart output.mp4`
 - 素材を追加・変更したら`pnpm check:assets`を実行する。
-- 詳細: [READMEの素材の決まり](README.md#素材の決まり)。
 
 ## Which skill to use
 

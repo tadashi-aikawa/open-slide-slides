@@ -29,7 +29,6 @@ ffmpeg -i input.mp4 -an -c:v libx264 -preset veryslow -crf 22 \
 - 縮小: `cwebp`へ`-resize <最大表示幅> 0`を追加する。元画像の幅が表示幅以下なら縮小しない。
 - 禁止: `-lossless`と`-near_lossless`。
 - 検査: 素材を追加・変更したら`pnpm check:assets`を実行する。
-- 詳細: [READMEの素材の決まり](../README.md#素材の決まり)。
 
 ## Palette
 
