@@ -17,7 +17,6 @@ import stillPanel from './assets/still-panel.webp';
 import zenMedium from './assets/ZenOldMincho-Medium.woff2';
 import zenRegular from './assets/ZenOldMincho-Regular.woff2';
 
-// Slidev版(slidev-kokukoku-intro)の移植。元は1280×720なので、寸法はすべて1.5倍にしてある。
 
 export const design: DesignSystem = {
   palette: { bg: '#0a0806', text: '#2c2419', accent: '#b23f26' },
@@ -75,7 +74,7 @@ if (typeof document !== 'undefined') {
   if (style.textContent !== css) style.textContent = css;
 }
 
-// Slidev版の `transition: fade` に合わせた、不透明度だけの切り替え。
+// 不透明度だけの切り替え。
 export const transition: SlideTransition = {
   duration: 240,
   exit: {
@@ -109,7 +108,7 @@ const useStepRevealed = () => {
   return { ref, revealed };
 };
 
-// 見た目を持たない1クリック分。Slidev版の `<span v-click>` に当たる。
+// 見た目を持たない1クリック分。
 const ClickTrigger = ({ triggerRef }: { triggerRef: RefObject<HTMLSpanElement | null> }) => (
   <div style={{ position: 'absolute', left: 0, top: 0, width: 0, height: 0 }}>
     <Steps>
@@ -424,8 +423,7 @@ const Lacquer = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
-// Slidev版のCSSには枚ごとの見出しサイズ(50px・49px)があるが、詳細度で負けて効いていない。
-// 見比べるのが目的なので、実際に描かれている52px(1.5倍で78px)へ全枚そろえる。
+// 見出しサイズは全ページで78pxにそろえる。
 const titleStyle: CSSProperties = {
   flex: '0 0 auto',
   margin: 0,

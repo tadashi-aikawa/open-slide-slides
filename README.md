@@ -32,7 +32,5 @@ mainへpushすると、GitHub ActionsがGitHub Pagesへ公開します。
 
 ## デッキ
 
-| デッキ | 移行元 |
-| --- | --- |
-| [KOKUKOKU紹介](https://tadashi-aikawa.github.io/open-slide-slides/s/kokukoku-intro/) | [slidev-kokukoku-intro](https://github.com/tadashi-aikawa/slidev-kokukoku-intro) |
-| [AI時代を生き抜くためにぼくらが変えたこと](https://tadashi-aikawa.github.io/open-slide-slides/s/surviving-ai-era/) | [slidev-surviving-ai-era](https://github.com/tadashi-aikawa/slidev-surviving-ai-era) |
+- [KOKUKOKU紹介](https://tadashi-aikawa.github.io/open-slide-slides/s/kokukoku-intro/)
+- [AI時代を生き抜くためにぼくらが変えたこと](https://tadashi-aikawa.github.io/open-slide-slides/s/surviving-ai-era/)
