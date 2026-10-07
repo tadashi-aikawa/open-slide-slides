@@ -1194,7 +1194,11 @@ const P29: Page = () => (
 
 export const summary = 'AIに任せる量を増やすために変えた3つのことをまとめたスライド。';
 
-export const meta: SlideMeta = { title: 'AI時代を生き抜くためにぼくらが変えたこと', theme: 'standard' };
+export const meta: SlideMeta & { date: string } = {
+  title: 'AI時代を生き抜くためにぼくらが変えたこと',
+  date: '2026-08-18',
+  theme: 'standard',
+};
 export default [
   P01, P02, P03, P04, P05, P06, P07, P08, P09, P10,
   P11, P12, P13, P14, P15, P16, P17, P18, P19, P20,

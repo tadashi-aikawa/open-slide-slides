@@ -1224,8 +1224,9 @@ const Closing: Page = () => (
 
 export const summary = 'KOKUKOKUが過去・今・未来を同じ時間軸で扱う機能と、和風の世界観を5分で紹介するスライド。';
 
-export const meta: SlideMeta = {
+export const meta: SlideMeta & { date: string } = {
   title: 'KOKUKOKU — 刻一刻と時を見守る',
+  date: '2026-09-14',
   createdAt: '2026-10-01T22:50:13.566Z',
 };
 

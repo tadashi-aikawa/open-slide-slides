@@ -7,7 +7,11 @@ You are authoring **slides** in this repo. Every slide is arbitrary React code t
 - Put your slide under `slides/<kebab-case-id>/`.
 - The entry is `slides/<id>/index.tsx`.
 - 一覧に出す概要を `index.tsx` の `export const summary = '概要の1文';` に書く。
-  - 書式: `summary` は上の形で独立した行に書く。`summary` と `meta.title` は単一行の引用符付き文字列リテラルにする。エスケープ・テンプレートリテラル・式は使わない。
+  - 書式: `summary` は上の形で独立した行に書く。`summary` と `meta.title` と `meta.date` は単一行の引用符付き文字列リテラルにする。エスケープ・テンプレートリテラル・式は使わない。
+- 新しいデッキの `meta.date` に発表日を必ず書く。
+  - 書式: `date: 'YYYY-MM-DD'`。実在する日付にする。制作日の `createdAt` とは別に持つ。
+  - 型: `export const meta: SlideMeta & { date: string } = { ... };`。
+  - 検証: `summary` や `meta.date` が無ければ `pnpm build:pages` が失敗する。
 - 新しいデッキを作ったら `pnpm covers <id>` で `slides/<id>/cover.webp` を生成し、デッキと一緒にコミットする。
   - 条件: 1枚目を変えたら撮り直す。
   - 必要: 手元のChromeと`cwebp`。Chromeの場所は `CHROME_PATH` でも指定できる。
