@@ -654,7 +654,7 @@ const P01: Page = () => (
         こと
       </div>
       <div style={coverRuleStyle} />
-      <div style={bodyMutedStyle}>2026/08/XX　Tadashi Aikawa</div>
+      <div style={bodyMutedStyle}>2026/08/18　Tadashi Aikawa</div>
     </div>
   </Shell>
 );
