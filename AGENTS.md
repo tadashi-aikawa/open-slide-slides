@@ -15,6 +15,9 @@ You are authoring **slides** in this repo. Every slide is arbitrary React code t
 - 新しいデッキを作ったら `pnpm covers <id>` で `slides/<id>/cover.webp` を生成し、デッキと一緒にコミットする。
   - 条件: 1枚目を変えたら撮り直す。
   - 必要: 手元のChromeと`cwebp`。Chromeの場所は `CHROME_PATH` でも指定できる。
+- デッキ・テーマの作成と検分の途中ではコミットしない。修正の往復ごとのコミットも作らない。
+  - 例外: タダシが「コミットして」「まとめて」と言ったときだけコミットする。
+  - まとめ方: 未pushの同じデッキのコミットがあれば、新しいコミットを足さずにそこへ畳む。テーマとデッキは別コミットにする。
 - Put slide-specific images/videos/fonts under `slides/<id>/assets/`. For assets reused across decks or themes (logos, avatars), use the global `assets/` folder and import via `@assets/...`.
 - Do **not** touch `package.json`, `open-slide.config.ts`, or other slides.
 - Do not add dependencies. Use only `react` and standard web APIs.
