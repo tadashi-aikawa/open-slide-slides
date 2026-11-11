@@ -58,5 +58,6 @@ mainへpushすると、GitHub ActionsがGitHub Pagesへ公開します。
 
 ## デッキ
 
+- [KIKIGAKI — 声をすべてドキュメントに](https://tadashi-aikawa.github.io/open-slide-slides/s/kikigaki-intro/)
 - [KOKUKOKU紹介](https://tadashi-aikawa.github.io/open-slide-slides/s/kokukoku-intro/)
 - [AI時代を生き抜くためにぼくらが変えたこと](https://tadashi-aikawa.github.io/open-slide-slides/s/surviving-ai-era/)
