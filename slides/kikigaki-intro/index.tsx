@@ -1946,6 +1946,166 @@ const KeyboardToVoice: Page = () => (
   </Shell>
 );
 
+// 2章の終わり: 初回リリースから画面の記録までの大きな機能追加。月ごとにクリックで出す。
+// 舞台は1664×520で、軸はy=260。点は等間隔に置き、名前は上下交互に出して隣とぶつけない。
+// 名前は1行5文字までに割る。7文字の行は、隣が5文字以下のときだけ置ける。
+const roadmap = { width: 1664, height: 520, axis: 260, first: 160, step: 149, stem: 56, label: 300, dot: 24, latest: 36 };
+const roadmapStageStyle: CSSProperties = { position: 'relative', width: roadmap.width, height: roadmap.height, flex: 'none' };
+const roadmapAxisStyle: CSSProperties = {
+  position: 'absolute',
+  left: space.none,
+  top: roadmap.axis - stroke.thin / 2,
+  height: stroke.thin,
+  background: color.ink,
+};
+// 最後の点の先は破線にして、まだ続くことを示す。
+const roadmapAxisRestStyle: CSSProperties = {
+  ...roadmapAxisStyle,
+  background: `repeating-linear-gradient(90deg, ${color.ink} 0 16px, transparent 16px 28px)`,
+};
+const roadmapLabelStyle: CSSProperties = {
+  position: 'absolute',
+  width: roadmap.label,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: space.xs,
+  textAlign: 'center',
+};
+const roadmapNameStyle: CSSProperties = { fontSize: 40, fontWeight: weight.bold, lineHeight: leading.heading, color: color.ink, whiteSpace: 'nowrap' };
+const roadmapDateStyle: CSSProperties = {
+  fontSize: type.folio,
+  fontWeight: weight.bold,
+  lineHeight: leading.tight,
+  color: color.muted,
+  fontVariantNumeric: 'tabular-nums',
+};
+const roadmapStemStyle: CSSProperties = { position: 'absolute', width: shape.hairline, background: color.faint };
+const roadmapX = (index: number) => roadmap.first + roadmap.step * index;
+// 名前と日付の位置は、点の大きさによらずそろえる。大きい点は線を短くして合わせる。
+const roadmapReach = roadmap.dot / 2 + roadmap.stem;
+const RoadmapItem = ({
+  index,
+  date,
+  side,
+  beat,
+  delay = 0,
+  latest = false,
+  children,
+}: {
+  index: number;
+  date: string;
+  side: 'above' | 'below';
+  beat: number;
+  delay?: number;
+  latest?: boolean;
+  children: ReactNode;
+}) => {
+  const enter = useMotion();
+  const x = roadmapX(index);
+  const size = latest ? roadmap.latest : roadmap.dot;
+  const dotStyle: CSSProperties = {
+    position: 'absolute',
+    boxSizing: 'border-box',
+    left: x - size / 2,
+    top: roadmap.axis - size / 2,
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    background: latest ? 'var(--osd-accent)' : color.sheet,
+    border: latest ? 'none' : `${stroke.thin}px solid ${color.ink}`,
+  };
+  const stemHeight = roadmapReach - size / 2;
+  const stemTop = side === 'above' ? roadmap.axis - roadmapReach : roadmap.axis + size / 2;
+  const labelPlace: CSSProperties =
+    side === 'above'
+      ? { left: x - roadmap.label / 2, bottom: roadmap.height - roadmap.axis + roadmapReach + space.xs }
+      : { left: x - roadmap.label / 2, top: roadmap.axis + roadmapReach + space.xs };
+  const name = <div style={{ ...roadmapNameStyle, color: latest ? 'var(--osd-accent)' : color.ink }}>{children}</div>;
+  const day = <div style={roadmapDateStyle}>{date}</div>;
+  return (
+    <div style={enter('rise', beat, delay)}>
+      <div aria-hidden style={{ ...roadmapStemStyle, left: x - shape.hairline / 2, top: stemTop, height: stemHeight }} />
+      <div aria-hidden style={dotStyle} />
+      <div style={{ ...roadmapLabelStyle, ...labelPlace }}>
+        {side === 'above' ? (
+          <>
+            {name}
+            {day}
+          </>
+        ) : (
+          <>
+            {day}
+            {name}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+const RoadmapTimeline = () => (
+  <div style={roadmapStageStyle}>
+    <div aria-hidden style={{ ...roadmapAxisStyle, width: roadmapX(9) }} />
+    <div aria-hidden style={{ ...roadmapAxisRestStyle, left: roadmapX(9), right: space.none }} />
+    <RoadmapItem index={0} date="9/6" side="above" beat={1}>
+      話者付きの
+      <br />
+      書き起こし
+    </RoadmapItem>
+    <RoadmapItem index={1} date="9/7" side="below" beat={1} delay={1}>
+      AIエージェント
+      <br />
+      と連携
+    </RoadmapItem>
+    <RoadmapItem index={2} date="9/11" side="above" beat={1} delay={2}>
+      議事録の
+      <br />
+      プレビュー
+    </RoadmapItem>
+    <RoadmapItem index={3} date="9/23" side="below" beat={1} delay={3}>
+      議論の
+      <br />
+      ボード
+    </RoadmapItem>
+    <RoadmapItem index={4} date="9/27" side="above" beat={1} delay={4}>
+      最大8人の
+      <br />
+      話者判別
+    </RoadmapItem>
+    <RoadmapItem index={5} date="9/30" side="below" beat={1} delay={5}>
+      システム音声の
+      <br />
+      取り込み
+    </RoadmapItem>
+    <RoadmapItem index={6} date="10/11" side="above" beat={2}>
+      話者名の
+      <br />
+      推定
+    </RoadmapItem>
+    <RoadmapItem index={7} date="10/13" side="below" beat={2} delay={1}>
+      声の合図で
+      <br />
+      送信
+    </RoadmapItem>
+    <RoadmapItem index={8} date="10/26" side="above" beat={2} delay={2}>
+      音声ファイルの
+      <br />
+      書き起こし
+    </RoadmapItem>
+    <RoadmapItem index={9} date="11/12" side="below" beat={3} latest>
+      画面の記録
+    </RoadmapItem>
+  </div>
+);
+const Roadmap: Page = () => (
+  <Shell beats={3}>
+    <Title eyebrow="KIKIGAKIのこれまで">主な機能追加</Title>
+    <Stage>
+      <RoadmapTimeline />
+    </Stage>
+  </Shell>
+);
+
 const TwoLayers: Page = () => (
   <Shell beats={3}>
     <Title eyebrow="KIKIGAKIとは">KIKIGAKIの2層構造</Title>
@@ -2876,6 +3036,7 @@ export default [
   Relation,
   AgentWorks,
   KeyboardToVoice,
+  Roadmap,
   Chapter3,
   DiffRealtime,
   DiffCustom,
